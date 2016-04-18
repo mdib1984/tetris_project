@@ -201,6 +201,35 @@
                     draw(x+29,y+58);
                 }
 
+                function newForm(){
+                    var i=Math.floor(Math.random()*8);
+                        switch (i) {
+                            case 0:
+                                drawS();
+                                break;
+                            case 1:
+                                drawZ();
+                                break;
+                            case 2:
+                                drawJ();
+                                break;
+                            case 3:
+                                drawL();
+                                break;
+                            case 4:
+                                drawO();
+                                break;
+                            case 5:
+                                drawI();
+                                break;
+                            case 6:
+                                drawT();
+                                break;          
+                            } 
+                }
+
+                newForm();
+                /*
                  drawL();
                  drawI();
                  drawT();
@@ -208,7 +237,7 @@
                  drawJ();
                  drawZ();    
                  drawS();   
-
+                */
 
 
         </script>
