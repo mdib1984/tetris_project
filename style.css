@@ -1,0 +1,14 @@
+/*
+style.css
+---------
+02/04/2016
+
+by Mustapha DIB 
+*/
+
+canvas {
+    display: block;
+    margin: auto;
+    border: 1px solid black;
+}
+
