@@ -38,8 +38,6 @@
                 // fonctions 
                 function drawI(){
 
-                    id= Math.floor( Math.random() * colors.length );
-                    context.fillStyle = colors[id];
                      //sens 1   
                      draw(0,0);
                      draw(29,0);
@@ -57,8 +55,7 @@
 
                      var x,y;
                 function drawT(){
-                     id= Math.floor( Math.random() * colors.length );
-                     context.fillStyle = colors[id];
+                    
  
                      x=150,y=150;
                      //sens 1
@@ -91,8 +88,7 @@
                   
 
                 function drawL(){
-                    id= Math.floor( Math.random() * colors.length );
-                    context.fillStyle = colors[id];
+                    
                      x=10,y=300;
                      //sens 1
                      draw(x,y);
@@ -124,8 +120,7 @@
                 } 
                    
                 function drawO(){
-                    id= Math.floor( Math.random() * colors.length );
-                    context.fillStyle = colors[id];
+                   
                      x=300,y=100;
                      draw(x,y);
                      draw(x+29,y);
@@ -135,8 +130,7 @@
                 }  
 
                 function drawJ(){
-                    id= Math.floor( Math.random() * colors.length );
-                    context.fillStyle = colors[id];
+                    
                     x=10,y=400;
                     //sens 1
                     draw(x,y);
@@ -166,8 +160,7 @@
                 }
 
                 function drawZ(){
-                    id= Math.floor( Math.random() * colors.length );
-                    context.fillStyle = colors[id];
+                    
                     x=10,y=480;
                     draw(x,y);
                     draw(x+29,y);
@@ -184,9 +177,7 @@
                 }
 
                 function drawS(){
-                    id= Math.floor( Math.random() * colors.length );
-                    context.fillStyle = colors[id];
-
+                  
                     x=258;
                     y=500;
                     draw(x,y);
@@ -202,7 +193,10 @@
                 }
 
                 function newForm(){
-                    var i=Math.floor(Math.random()*8);
+                    id= Math.floor( Math.random() * colors.length );
+                    context.fillStyle = colors[id];
+
+                    var i=Math.floor(Math.random()*6);
                         switch (i) {
                             case 0:
                                 drawS();
