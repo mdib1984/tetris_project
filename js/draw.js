@@ -270,7 +270,7 @@ by Mustapha
 			
 				function Game(){
 					newForm();
-					//setInterval(DefaultMouve,50);
+					setInterval(DefaultMouve,50);
 					
 				}
 				
