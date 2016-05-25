@@ -8,8 +8,7 @@ by Mustapha
 				var canvas = document.getElementById( 'canvas' );
                 var context = canvas.getContext( '2d' );
 				var colors = ['Red','Green','Blue','Yellow','Brown','Gray','Cyan', 'Magenta', 'Orange','Pink','Purple'];
-				//var COLS = 10, ROWS = 20;
-				var board = [];	
+				
 				var forms=['I','T','L','J','O','Z','S'];
 				
 				var CurrentFormName;
@@ -38,13 +37,13 @@ by Mustapha
 					CurrentFormName='I';
 					sens=CurrentSens%2;
 					switch (sens) {
-                            case 1:
+                            case 0:
 								 draw(x,y);
 								 draw(x+29,y);
 								 draw(x+58,y);
 								 draw(x+87,y);
 								break;
-                            case 2:
+                            case 1:
   								draw(150,0);
 								 draw(150,29);
 								 draw(150,58);
@@ -60,26 +59,26 @@ by Mustapha
 					CurrentFormName='T';
 					sens=CurrentSens%4;
 					switch (sens) {
-                            case 1:
+                            case 0:
 								 draw(x,y);
 								 draw(x+29,y);
 								 draw(x+29,y+29);
 								 draw(x+58,y);
 								break;
-                            case 2:
+                            case 1:
   								draw(x,y);
 								 draw(x+29,y);
 								 draw(x+29,y+29);
 								 draw(x+29,y-29);
 
                                 break; 
-							case 3:
+							case 2:
 								draw(x+29,y);
 								 draw(x+29,y+29);
 								 draw(x+29,y+58);
 								 draw(x+58,y+29);
 								break;
-                            case 4:
+                            case 3:
 								draw(x+58,y);
 								draw(x+29,y+29);
 								draw(x+58,y+29);
@@ -92,26 +91,26 @@ by Mustapha
                     CurrentFormName='L';
 					sens=CurrentSens%4;
 					switch (sens) {
-                            case 1:
+                            case 0:
 								 draw(x,y);
 								 draw(x+29,y);
 								 draw(x+29,y+29);
 								 draw(x+29,y+58);
 								break;
-                            case 2:
+                            case 1:
   								draw(x,y);
 								draw(x+29,y);
 								draw(x,y+29);
 								draw(x+58,y);
 
                                 break; 
-							case 3:
+							case 2:
 								draw(x,y);
 								 draw(x+29,y);
 								 draw(x+58,y);
 								 draw(x+58,y-29);
 								break;
-                            case 4:
+                            case 3:
 								draw(x,y);
 								draw(x+29,y);
 								draw(x,y-29);
@@ -137,26 +136,26 @@ by Mustapha
                   
 					sens=CurrentSens%4;
 					switch (sens) {
-                            case 1:
+                            case 0:
 								draw(x,y);
 								draw(x,y+29);
 								draw(x+29,y+29);
 								draw(x+58,y+29);
 								break;
-                            case 2:
+                            case 1:
   								draw(x,y);
 								draw(x+29,y);
 								draw(x,y+29);
 								draw(x,y+58);
 
                                 break; 
-							case 3:
+							case 2:
 								draw(x,y);
 								draw(x+29,y);
 								draw(x+58,y);
 								draw(x+58,y+29);
 								break;
-                            case 4:
+                            case 3:
 								draw(x,y);
 								draw(x+29,y);
 								draw(x+29,y-29);
@@ -170,13 +169,13 @@ by Mustapha
                     CurrentFormName='Z';
 					sens=CurrentSens%2;
 					switch (sens) {
-                            case 1:
+                            case 0:
 								draw(x,y);
 								draw(x+29,y);
 								draw(x+29,y+29);
 								draw(x+58,y+29);
 								break;
-                            case 2:
+                            case 1:
                                 draw(x,y);
 								draw(x,y+29);
 								draw(x-29,y+29);
@@ -190,13 +189,13 @@ by Mustapha
 					sens=CurrentSens%2
 					
 					 switch (sens) {
-                            case 1:
+                            case 0:
                                 draw(x,y);
 								draw(x,y+29);
 								draw(x+29,y+29);
 								draw(x+29,y+58);
                                 break;
-                            case 2:
+                            case 1:
                                 draw(x,y);
 								draw(x-29,y);
 								draw(x-29,y+29);
@@ -241,7 +240,7 @@ by Mustapha
 				function newForm(){
 					CurrentX=150;
 					CurrentY=0;
-					CurrentSens=1;
+					CurrentSens=0;
                     id= Math.floor( Math.random() * colors.length );
                     context.fillStyle = colors[id];
 					context.strokeStyle = 'black';	
@@ -269,8 +268,10 @@ by Mustapha
 					
 			
 				function Game(){
+					clearInterval(interval);
 					newForm();
-					setInterval(DefaultMouve,50);
+					interval = setInterval(DefaultMouve,50);
+					
 					
 				}
 				
