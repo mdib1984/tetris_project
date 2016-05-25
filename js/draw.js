@@ -4,15 +4,21 @@ version 1.0 :
 
 by Mustapha 
 */
-
- var canvas = document.getElementById( 'canvas' );
+ 
+				var canvas = document.getElementById( 'canvas' );
                 var context = canvas.getContext( '2d' );
 				var colors = ['Red','Green','Blue','Yellow','Brown','Gray','Cyan', 'Magenta', 'Orange','Pink','Purple'];
-
-				var forms=[];
+				//var COLS = 10, ROWS = 20;
+				var board = [];	
+				var forms=['I','T','L','J','O','Z','S'];
 				
+				var CurrentFormName;
+				var CurrentX,CurrentY;
+				var CurrentSens;
+				var interval;
 				/*id aleatoire pour la couleur de la forme*/
 				var id; 
+				var x,y,sens;
                 
 				/* 
                  Toutes les formes de ce jeu sont une composition de 4 carrés 
@@ -24,97 +30,101 @@ by Mustapha
                     context.strokeRect(x, y, 29, 29);
                 }    
                     
-                
-                context.strokeStyle = 'black';      
-                
+                /**
+				 Fonctions des differentes formes du jeu 
+				*/
+				
+                function drawI(x,y,sens){
+					CurrentFormName='I';
+					sens=CurrentSens%2;
+					switch (sens) {
+                            case 1:
+								 draw(x,y);
+								 draw(x+29,y);
+								 draw(x+58,y);
+								 draw(x+87,y);
+								break;
+                            case 2:
+  								draw(150,0);
+								 draw(150,29);
+								 draw(150,58);
+								 draw(150,87);
 
-                // fonctions 
-                function drawI(){
-
-                     //sens 1   
-                     draw(0,0);
-                     draw(29,0);
-                     draw(58,0);
-                     draw(87,0);
-                
-                     //Sens 2
-                     draw(150,0);
-                     draw(150,29);
-                     draw(150,58);
-                     draw(150,87);
-                }
-
-               
-
-                     var x,y;
-                function drawT(){
-                    
- 
-                     x=150,y=150;
-                     //sens 1
-                     draw(x,y);
-                     draw(x+29,y);
-                     draw(x+29,y+29);
-                     draw(x+58,y);
+                                break;  			
+                            }	
                      
-                     //sens 2 
-                     x=10,y=100;
-                     draw(x,y);
-                     draw(x+29,y);
-                     draw(x+29,y+29);
-                     draw(x+29,y-29);
+                }           
+                  
+                function drawT(x,y,sens){
+				
+					CurrentFormName='T';
+					sens=CurrentSens%4;
+					switch (sens) {
+                            case 1:
+								 draw(x,y);
+								 draw(x+29,y);
+								 draw(x+29,y+29);
+								 draw(x+58,y);
+								break;
+                            case 2:
+  								draw(x,y);
+								 draw(x+29,y);
+								 draw(x+29,y+29);
+								 draw(x+29,y-29);
 
-                     //Sens 3
-                     x=10,y=200;
-                     draw(x+29,y);
-                     draw(x+29,y+29);
-                     draw(x+29,y+58);
-                     draw(x+58,y+29);
-
-                     //Sens 4
-                     x=160,y=10;
-                     draw(x+58,y);
-                     draw(x+29,y+29);
-                     draw(x+58,y+29);
-                     draw(x+87,y+29);
+                                break; 
+							case 3:
+								draw(x+29,y);
+								 draw(x+29,y+29);
+								 draw(x+29,y+58);
+								 draw(x+58,y+29);
+								break;
+                            case 4:
+								draw(x+58,y);
+								draw(x+29,y+29);
+								draw(x+58,y+29);
+								draw(x+87,y+29);
+                                break; 			
+                            }
                 }   
                   
+                function drawL(x,y,sens){
+                    CurrentFormName='L';
+					sens=CurrentSens%4;
+					switch (sens) {
+                            case 1:
+								 draw(x,y);
+								 draw(x+29,y);
+								 draw(x+29,y+29);
+								 draw(x+29,y+58);
+								break;
+                            case 2:
+  								draw(x,y);
+								draw(x+29,y);
+								draw(x,y+29);
+								draw(x+58,y);
 
-                function drawL(){
-                    
-                     x=10,y=300;
-                     //sens 1
-                     draw(x,y);
-                     draw(x+29,y);
-                     draw(x+29,y+29);
-                     draw(x+29,y+58);
+                                break; 
+							case 3:
+								draw(x,y);
+								 draw(x+29,y);
+								 draw(x+58,y);
+								 draw(x+58,y-29);
+								break;
+                            case 4:
+								draw(x,y);
+								draw(x+29,y);
+								draw(x,y-29);
+								draw(x,y-58);
+                                break; 			
+                            }		
 
-                     //sens 2
-                     x=x+87;   
-                     draw(x,y);
-                     draw(x+29,y);
-                     draw(x,y+29);
-                     draw(x+58,y);
-
-                     //Sens 3
-                     x=200,y=300;
-                     draw(x,y);
-                     draw(x+29,y);
-                     draw(x+58,y);
-                     draw(x+58,y-29);
-
-                     //Sens 4
-                    x=300,y=300;
-                     draw(x,y);
-                     draw(x+29,y);
-                     draw(x,y-29);
-                     draw(x,y-58);
 
                 } 
                    
-                function drawO(){
-                   
-                     x=300,y=100;
+                function drawO(x,y,sens){
+					CurrentFormName='O';
+                     
                      draw(x,y);
                      draw(x+29,y);
                      draw(x,y+29);
@@ -122,106 +132,196 @@ by Mustapha
 
                 }  
 
-                function drawJ(){
-                    
-                    x=10,y=400;
-                    //sens 1
-                    draw(x,y);
-                    draw(x,y+29);
-                    draw(x+29,y+29);
-                    draw(x+58,y+29);
-                    //sens 2
-                    x=106;
-                    draw(x,y);
-                    draw(x+29,y);
-                    draw(x,y+29);
-                    draw(x,y+58);
-                    //sens 3 
-                    x=193;
-                    draw(x,y);
-                    draw(x+29,y);
-                    draw(x+58,y);
-                    draw(x+58,y+29);
-                    //sens 4 
-                    x=300;
-
-                    draw(x,y);
-                    draw(x+29,y);
-                    draw(x+29,y-29);
-                    draw(x+29,y-58);
-
-                }
-
-                function drawZ(){
-                    
-                    x=10,y=480;
-                    draw(x,y);
-                    draw(x+29,y);
-                    draw(x+29,y+29);
-                    draw(x+58,y+29); 
-
-                    //sens 2 
-                    y=500;
-                    x=145;
-                    draw(x,y);
-                    draw(x,y+29);
-                    draw(x-29,y+29);
-                    draw(x-29,y+58);                   
-                }
-
-                function drawS(){
+                function drawJ(x,y,sens){
+                    CurrentFormName='J';
                   
-                    x=258;
-                    y=500;
-                    draw(x,y);
-                    draw(x-29,y);
-                    draw(x-29,y+29);
-                    draw(x-58,y+29);
-                    //sens 2
-                    x=300;
-                    draw(x,y);
-                    draw(x,y+29);
-                    draw(x+29,y+29);
-                    draw(x+29,y+58);
+					sens=CurrentSens%4;
+					switch (sens) {
+                            case 1:
+								draw(x,y);
+								draw(x,y+29);
+								draw(x+29,y+29);
+								draw(x+58,y+29);
+								break;
+                            case 2:
+  								draw(x,y);
+								draw(x+29,y);
+								draw(x,y+29);
+								draw(x,y+58);
+
+                                break; 
+							case 3:
+								draw(x,y);
+								draw(x+29,y);
+								draw(x+58,y);
+								draw(x+58,y+29);
+								break;
+                            case 4:
+								draw(x,y);
+								draw(x+29,y);
+								draw(x+29,y-29);
+								draw(x+29,y-58);
+                                break; 			
+                            } 			
+
                 }
 
-                function newForm(){
-                    id= Math.floor( Math.random() * colors.length );
-                    context.fillStyle = colors[id];
-
-                    var i=Math.floor(Math.random()*6);
-                        switch (i) {
-                            case 0:
-                                drawS();
-                                break;
+                function drawZ(x,y,sens){
+                    CurrentFormName='Z';
+					sens=CurrentSens%2;
+					switch (sens) {
                             case 1:
-                                drawZ();
+								draw(x,y);
+								draw(x+29,y);
+								draw(x+29,y+29);
+								draw(x+58,y+29);
+								break;
+                            case 2:
+                                draw(x,y);
+								draw(x,y+29);
+								draw(x-29,y+29);
+								draw(x-29,y+58);
+                                break;         
+                            } 		
+                }
+
+                function drawS(x,y,sens){
+					CurrentFormName='S';
+					sens=CurrentSens%2
+					
+					 switch (sens) {
+                            case 1:
+                                draw(x,y);
+								draw(x,y+29);
+								draw(x+29,y+29);
+								draw(x+29,y+58);
                                 break;
                             case 2:
-                                drawJ();
-                                break;
-                            case 3:
-                                drawL();
-                                break;
-                            case 4:
-                                drawO();
-                                break;
-                            case 5:
-                                drawI();
-                                break;
-                            case 6:
-                                drawT();
-                                break;          
+                                draw(x,y);
+								draw(x-29,y);
+								draw(x-29,y+29);
+								draw(x-58,y+29);
+                                break;         
                             } 
                 }
+                
+				function formInit(x,y,FormName,sens){
+                        switch (FormName) {
+                            case 'S':
+                                drawS(x,y,sens);
+                                break;
+                            case 'Z':
+                                drawZ(x,y,sens);
+                                break;
+                            case 'J':
+                                drawJ(x,y,sens);
+                                break;
+                            case 'L':
+                                drawL(x,y,sens);
+                                break;
+                            case 'O':
+                                drawO(x,y,sens);
+                                break;
+                            case 'I':
+                                drawI(x,y,sens);
+                                break;
+                            case 'T':
+                                drawT(x,y,sens);
+                                break;          
+                            } 
+				}
 
-                newForm();
-                /*
-                 drawL();
-                 drawI();
-                 drawT();
-                 drawO();
-                 drawJ();
-                 drawZ();    
-                 drawS();   
-                */
+				function rotate( CurrentFormName ) {
+				
+					formInit(CurrentX,CurrentY,CurrentFormName,CurrentSens);
+				}
+
+
+				
+				function newForm(){
+					CurrentX=150;
+					CurrentY=0;
+					CurrentSens=1;
+                    id= Math.floor( Math.random() * colors.length );
+                    context.fillStyle = colors[id];
+					context.strokeStyle = 'black';	
+					var id2=Math.floor(Math.random()*7);
+					CurrentFormName=forms[id2];
+					
+				//	formInit(CurrentX,CurrentY,CurrentFormName);
+					formInit(CurrentX,CurrentY,CurrentFormName,CurrentSens);
+					
+					
+                }
+
+				
+				// clears
+				function init() {
+					context.clearRect(0, 0, canvas.width, canvas.height);
+				}
+					
+				function DefaultMouve(){
+					init();
+					++CurrentY;
+					formInit(CurrentX,CurrentY,CurrentFormName,CurrentSens);
+											
+				}
+					
+			
+				function Game(){
+					newForm();
+					//setInterval(DefaultMouve,50);
+					
+				}
+				
+				Game();		
+                 //DefaultMouve();   
+				    
+        			
+
+					
+/*  
+   Controle Clavier 
+*/	
+
+document.body.onkeydown = function( e ) {
+    var keys = {
+        37: 'left',
+        39: 'right',
+        40: 'down',
+        38: 'rotate'
+    };
+    if ( typeof keys[ e.keyCode ] != 'undefined' ) {
+        keyPress( keys[ e.keyCode ] );
+     //   setInterval(DefaultMouve,50);
+    }
+};
+
+function keyPress( key ) {
+    switch ( key ) {
+        case 'left':
+			init();
+            --CurrentX;
+			formInit(CurrentX,CurrentY,CurrentFormName);
+            break;
+        case 'right':
+			init();
+            ++CurrentX;
+			formInit(CurrentX,CurrentY,CurrentFormName);
+            break;
+        case 'down':
+			init();
+            ++CurrentY;
+			formInit(CurrentX,CurrentY,CurrentFormName);
+            break;
+		case 'rotate':
+			init();
+            rotate(CurrentFormName);
+			++CurrentSens
+			//formInit(CurrentX,CurrentY,CurrentFormName);
+            break;	
+    }
+}
+	    
+
+				
