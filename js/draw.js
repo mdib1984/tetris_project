@@ -299,9 +299,6 @@ by Mustapha
 				
 				// clears
 				function init() {
-					//context.fillStyle = 'white';
-					//context.strokeStyle = 'white';
-					//formInit(CurrentX,CurrentY,CurrentFormName,CurrentSens);
 					context.clearRect(0, 0, canvas.width, canvas.height);
 				}
 					
@@ -311,7 +308,6 @@ by Mustapha
 						++CurrentY;
 						formInit(CurrentX,CurrentY,CurrentFormName,CurrentSens);
 					}else{
-					
 					newForm();
 					}						
 				}
