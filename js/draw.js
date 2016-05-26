@@ -8,13 +8,18 @@ by Mustapha
 				var canvas = document.getElementById( 'canvas' );
                 var context = canvas.getContext( '2d' );
 				var colors = ['Red','Green','Blue','Yellow','Brown','Gray','Cyan', 'Magenta', 'Orange','Pink','Purple'];
+				var CANVAS_W=canvas.width;
+				var CANVAS_H=canvas.height;
 				
 				var forms=['I','T','L','J','O','Z','S'];
 				
 				var CurrentFormName;
-				var CurrentX,CurrentY;
-				var CurrentSens;
+				var CurrentX,CurrentY,CurrentX_OffSet,CurrentY_OffSet;
+				var BLOC_W=29;
+				var BLOC_H=29;
 				var interval;
+				
+				
 				/*id aleatoire pour la couleur de la forme*/
 				var id; 
 				var x,y,sens;
@@ -24,9 +29,8 @@ by Mustapha
                   definissant ce carré de 29X29
                 */    
                 function draw(x,y){                
-                     
-                    context.fillRect(x, y, 29, 29);
-                    context.strokeRect(x, y, 29, 29);
+                    context.fillRect(x, y, BLOC_W, BLOC_H);
+                    context.strokeRect(x, y, BLOC_W, BLOC_H);
                 }    
                     
                 /**
@@ -42,12 +46,16 @@ by Mustapha
 								 draw(x+29,y);
 								 draw(x+58,y);
 								 draw(x+87,y);
+								 CurrentX_OffSet=BLOC_W+x+87;
+								 CurrentY_OffSet=BLOC_W+y;
 								break;
                             case 1:
-  								draw(150,0);
-								 draw(150,29);
-								 draw(150,58);
-								 draw(150,87);
+  								draw(x,y+0);
+								 draw(x,y+29);
+								 draw(x,y+58);
+								 draw(x,y+87);
+								 CurrentX_OffSet=BLOC_W+x;
+								 CurrentY_OffSet=BLOC_W+y+87;
 
                                 break;  			
                             }	
@@ -64,25 +72,32 @@ by Mustapha
 								 draw(x+29,y);
 								 draw(x+29,y+29);
 								 draw(x+58,y);
+								 CurrentX_OffSet=BLOC_W+x+58;
+								 CurrentY_OffSet=BLOC_W+y+29;								 
 								break;
                             case 1:
   								draw(x,y);
 								 draw(x+29,y);
 								 draw(x+29,y+29);
 								 draw(x+29,y-29);
-
+								 CurrentX_OffSet=BLOC_W+x+29;
+								 CurrentY_OffSet=BLOC_W+y-29;
                                 break; 
 							case 2:
 								draw(x+29,y);
 								 draw(x+29,y+29);
 								 draw(x+29,y+58);
 								 draw(x+58,y+29);
+								 CurrentX_OffSet=BLOC_W+x+58;
+								 CurrentY_OffSet=BLOC_W+y+58;								 
 								break;
                             case 3:
 								draw(x+58,y);
 								draw(x+29,y+29);
 								draw(x+58,y+29);
 								draw(x+87,y+29);
+								CurrentX_OffSet=BLOC_W+x+87;
+								CurrentY_OffSet=BLOC_W+y+29;
                                 break; 			
                             }
                 }   
@@ -96,25 +111,32 @@ by Mustapha
 								 draw(x+29,y);
 								 draw(x+29,y+29);
 								 draw(x+29,y+58);
+								CurrentX_OffSet=BLOC_W+x+29;
+								CurrentY_OffSet=BLOC_W+y+58;								 
 								break;
                             case 1:
   								draw(x,y);
 								draw(x+29,y);
 								draw(x,y+29);
 								draw(x+58,y);
-
+								CurrentX_OffSet=BLOC_W+x+58;
+								CurrentY_OffSet=BLOC_W+y+29;
                                 break; 
 							case 2:
 								draw(x,y);
 								 draw(x+29,y);
 								 draw(x+58,y);
 								 draw(x+58,y-29);
+								CurrentX_OffSet=BLOC_W+x+58;
+								CurrentY_OffSet=BLOC_W+y-29;
 								break;
                             case 3:
 								draw(x,y);
 								draw(x+29,y);
 								draw(x,y-29);
 								draw(x,y-58);
+								CurrentX_OffSet=BLOC_W+x;
+								CurrentY_OffSet=BLOC_W-58;
                                 break; 			
                             }		
 
@@ -128,6 +150,8 @@ by Mustapha
                      draw(x+29,y);
                      draw(x,y+29);
                      draw(x+29,y+29);
+					 CurrentX_OffSet=BLOC_W+x+29;
+					 CurrentY_OffSet=BLOC_W+y+29;
 
                 }  
 
@@ -141,25 +165,32 @@ by Mustapha
 								draw(x,y+29);
 								draw(x+29,y+29);
 								draw(x+58,y+29);
+								CurrentX_OffSet=BLOC_W+x+58;
+								 CurrentY_OffSet=BLOC_W+y+29;
 								break;
                             case 1:
   								draw(x,y);
 								draw(x+29,y);
 								draw(x,y+29);
 								draw(x,y+58);
-
+								CurrentX_OffSet=BLOC_W+x+29;
+								 CurrentY_OffSet=BLOC_W+y+58;
                                 break; 
 							case 2:
 								draw(x,y);
 								draw(x+29,y);
 								draw(x+58,y);
 								draw(x+58,y+29);
+								CurrentX_OffSet=BLOC_W+x+58;
+								CurrentY_OffSet=BLOC_W+y+29;
 								break;
                             case 3:
 								draw(x,y);
 								draw(x+29,y);
 								draw(x+29,y-29);
 								draw(x+29,y-58);
+								CurrentX_OffSet=BLOC_W+x+58;
+								 CurrentY_OffSet=BLOC_W+y-58;
                                 break; 			
                             } 			
 
@@ -174,12 +205,16 @@ by Mustapha
 								draw(x+29,y);
 								draw(x+29,y+29);
 								draw(x+58,y+29);
+								CurrentX_OffSet=BLOC_W+x+58;
+								CurrentY_OffSet=BLOC_W+y+29;
 								break;
                             case 1:
                                 draw(x,y);
 								draw(x,y+29);
 								draw(x-29,y+29);
 								draw(x-29,y+58);
+								CurrentX_OffSet=BLOC_W+x-29;
+								CurrentY_OffSet=BLOC_W+y+58;
                                 break;         
                             } 		
                 }
@@ -194,17 +229,24 @@ by Mustapha
 								draw(x,y+29);
 								draw(x+29,y+29);
 								draw(x+29,y+58);
+								CurrentX_OffSet=BLOC_W+x+29;
+								CurrentY_OffSet=BLOC_W+y+58;
                                 break;
                             case 1:
                                 draw(x,y);
 								draw(x-29,y);
 								draw(x-29,y+29);
 								draw(x-58,y+29);
+								CurrentX_OffSet=BLOC_W+x-58;
+								CurrentY_OffSet=BLOC_W+y+29;
                                 break;         
                             } 
                 }
                 
 				function formInit(x,y,FormName,sens){
+				
+					if ((x>=0)&&(y>=0)){ 
+					
                         switch (FormName) {
                             case 'S':
                                 drawS(x,y,sens);
@@ -227,7 +269,8 @@ by Mustapha
                             case 'T':
                                 drawT(x,y,sens);
                                 break;          
-                            } 
+                            }
+					}							
 				}
 
 				function rotate( CurrentFormName ) {
@@ -256,17 +299,23 @@ by Mustapha
 				
 				// clears
 				function init() {
+					//context.fillStyle = 'white';
+					//context.strokeStyle = 'white';
+					//formInit(CurrentX,CurrentY,CurrentFormName,CurrentSens);
 					context.clearRect(0, 0, canvas.width, canvas.height);
 				}
 					
 				function DefaultMouve(){
-					init();
-					++CurrentY;
-					formInit(CurrentX,CurrentY,CurrentFormName,CurrentSens);
-											
-				}
+					if(CurrentY_OffSet<600){
+						init();
+						++CurrentY;
+						formInit(CurrentX,CurrentY,CurrentFormName,CurrentSens);
+					}else{
 					
-			
+					newForm();
+					}						
+				}
+
 				function Game(){
 					clearInterval(interval);
 					newForm();
@@ -301,26 +350,33 @@ document.body.onkeydown = function( e ) {
 function keyPress( key ) {
     switch ( key ) {
         case 'left':
-			init();
-            --CurrentX;
-			formInit(CurrentX,CurrentY,CurrentFormName);
+			if (CurrentX >0) {
+				init();
+				--CurrentX;
+				formInit(CurrentX,CurrentY,CurrentFormName);
+			}
             break;
         case 'right':
+			if (CurrentX_OffSet <CANVAS_W) {
 			init();
             ++CurrentX;
 			formInit(CurrentX,CurrentY,CurrentFormName);
+			}
             break;
         case 'down':
-			init();
-            ++CurrentY;
-			formInit(CurrentX,CurrentY,CurrentFormName);
+		
+			if (CurrentY_OffSet <CANVAS_H) {
+				init();
+				++CurrentY;
+				formInit(CurrentX,CurrentY,CurrentFormName);
+			}
+			
             break;
 		case 'rotate':
-			init();
-            rotate(CurrentFormName);
-			++CurrentSens
-			//formInit(CurrentX,CurrentY,CurrentFormName);
-            break;	
+					init();
+					rotate(CurrentFormName);
+					++CurrentSens;
+				break;
     }
 }
 	    
