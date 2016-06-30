@@ -7,10 +7,10 @@ by Mustapha
  
 				var canvas = document.getElementById( 'canvas' );
                 var context = canvas.getContext( '2d' );
-				var colors = ['Red','Green','Blue','Yellow','Brown','Gray','Cyan', 'Magenta', 'Orange','Pink','Purple'];
+				
 				var CANVAS_W=canvas.width;
 				var CANVAS_H=canvas.height;
-				
+				var colors = ['Red','Green','Blue','Yellow','Brown','Gray','Cyan', 'Magenta', 'Orange','Pink','Purple'];
 				var forms=['I','T','L','J','O','Z','S'];
 				
 				var CurrentFormName;
@@ -174,7 +174,7 @@ by Mustapha
 								draw(x,y+29);
 								draw(x,y+58);
 								CurrentX_OffSet=BLOC_W+x+29;
-								 CurrentY_OffSet=BLOC_W+y+58;
+								CurrentY_OffSet=BLOC_W+y+58;
                                 break; 
 							case 2:
 								draw(x,y);
@@ -243,8 +243,10 @@ by Mustapha
                             } 
                 }
                 
+// --- Fin  fromes 
+
 				function formInit(x,y,FormName,sens){
-				
+				    
 					if ((x>=0)&&(y>=0)){ 
 					
                         switch (FormName) {
@@ -284,20 +286,21 @@ by Mustapha
 					CurrentX=150;
 					CurrentY=0;
 					CurrentSens=0;
+					//Couleur
                     id= Math.floor( Math.random() * colors.length );
                     context.fillStyle = colors[id];
-					context.strokeStyle = 'black';	
-					var id2=Math.floor(Math.random()*7);
+					context.strokeStyle = 'black';
+					//Forme 	
+					var id2=Math.floor(Math.random()*forms.length);
 					CurrentFormName=forms[id2];
 					
-				//	formInit(CurrentX,CurrentY,CurrentFormName);
 					formInit(CurrentX,CurrentY,CurrentFormName,CurrentSens);
 					
 					
                 }
 
 				
-				// clears
+				// clear canvas 
 				function init() {
 					context.clearRect(0, 0, canvas.width, canvas.height);
 				}
@@ -308,7 +311,11 @@ by Mustapha
 						++CurrentY;
 						formInit(CurrentX,CurrentY,CurrentFormName,CurrentSens);
 					}else{
-					newForm();
+					 //draw current form first
+					 //formInit(CurrentX,CurrentY,CurrentFormName,CurrentSens);						 
+					 //newForm();
+					 //formInit(CurrentX,CurrentY,CurrentFormName,CurrentSens);
+					 newForm();
 					}						
 				}
 
@@ -320,9 +327,11 @@ by Mustapha
 					
 				}
 				
-				Game();		
-                 //DefaultMouve();   
-				    
+				Game();	
+
+				
+  
+				 
         			
 
 					
@@ -339,7 +348,7 @@ document.body.onkeydown = function( e ) {
     };
     if ( typeof keys[ e.keyCode ] != 'undefined' ) {
         keyPress( keys[ e.keyCode ] );
-     //   setInterval(DefaultMouve,50);
+     
     }
 };
 

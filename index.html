@@ -10,17 +10,63 @@
 
 
         <!-- partie jeux 400 X 600 -->
-        <canvas id='canvas' width='400' height='600'></canvas>
-        <script src='js/draw.js'></script>
+       
 
 
 		<!-- partie score du jeu -->
+        
 
+         
         <!-- partie prochaine forme -->
-		
+        
+        
+        <table align="center" style="width:50%">
 
+          <tr>
+                <td rowspan="2">
+                    <p style="color:black; font-size: 130%;text-align:left;">
+                        <strong>
+                            gacuhe: &larr;<br>
+                            bas : &darr;<br>
+                            droite : &rarr;<br>
+                            rotation : &uarr;<br>
+                        </strong>
+                    </p>
+                    
+                </td>
+                
+                     
+                <td rowspan="2"> 
+                        <canvas id='canvas' width='400' height='600'></canvas>
+                        <script src='js/draw.js'></script> 
+
+                </td>
+
+                
+                <td>
+                    <h4 align="center"> Score - Niveau :</h4>
+                    <canvas id='level' width='150' height='200'>
+
+                </td>
+                    
+          </tr>
+
+          <tr>
+                
+                <td>
+                     <h4 align="center"> Prochaine forme :</h4>
+                    <canvas id='next' width='150' height='200'>
+                       
+                </td>
+            </tr>
+        </table>
+        
+
+        	
+        
 		
 		<!-- footer -->
+
 	
     </body>
 </html>
